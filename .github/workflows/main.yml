@@ -1,0 +1,43 @@
+name: Tentativas Python
+
+on:
+  push:
+    branches: 
+     - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+  
+    steps:
+    - name: Checkout código
+      uses: actions/checkout@v2
+
+    - name: Configurar ambiente Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.12.2'
+
+    - name: Instalar dependências
+      run: |
+        pip install pytest  # Instale o pytest antes de executar os teste
+
+    - name: Teste01
+      run: |
+        python -m pytest Codes/Teste1.py  # Especifique o arquivo que contém os testes
+        
+    - name: Teste02
+      run: |
+        python -m pytest Codes/Teste2.py
+
+    - name: Teste03
+      run: |
+        python -m pytest Codes/Teste3.py
+
+    - name: Teste04
+      run: |
+        python -m pytest Codes/Teste4.py
+        
+    - name: Teste05
+      run: |
+        python -m pytest Codes/Teste5.py
