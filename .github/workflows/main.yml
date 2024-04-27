@@ -19,25 +19,19 @@ jobs:
         python-version: '3.12.2'
 
     - name: Instalar dependências
-      run: |
-        pip install pytest  # Instale o pytest antes de executar os teste
-
+      run: pip install pytest
+      
     - name: Teste01
-      run: |
-        python -m pytest Codes/Teste1.py  # Especifique o arquivo que contém os testes
+      run: pytest Codes/Teste1.py
         
     - name: Teste02
-      run: |
-        python -m pytest Codes/Teste2.py
+      run: pytest Codes/Teste2.py
 
     - name: Teste03
-      run: |
-        python -m pytest Codes/Teste3.py
+      run: pytest Codes/Teste3.py
 
     - name: Teste04
-      run: |
-        python -m pytest Codes/Teste4.py
+      run: pytest Codes/Teste4.py
         
     - name: Teste05
-      run: |
-        python -m pytest Codes/Teste5.py
+      run: pytest Codes/Teste5.py
