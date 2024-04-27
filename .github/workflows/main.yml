@@ -19,10 +19,10 @@ jobs:
         python-version: '3.12.2'
 
     - name: Instalar dependências
-      run: pip install -r pytest
+      run: pip install pytest
 
     - name: Instalar dependências
-      run: pip install -r flask
+      run: pip install flask
       
     - name: Teste01
       run: pytest Codes/Teste1.py
