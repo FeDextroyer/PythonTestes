@@ -1,3 +1,4 @@
+import nltk # type: ignore
 from itertools import permutations
 import unittest
 from flask import Flask

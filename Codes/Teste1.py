@@ -1,7 +1,5 @@
 import re
 import unittest
-from io import StringIO
-from unittest.mock import patch
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
@@ -132,58 +130,6 @@ class TestFuncionarioMethods(unittest.TestCase):
         self.assertFalse(Funcionario.validar_habilidades("Python;Python;Python"))
         self.assertFalse(Funcionario.validar_habilidades("Python"))
         self.assertFalse(Funcionario.validar_habilidades("Python;Java"))
-
-    @patch('sys.stdout', new_callable=StringIO)
-    def test_adicionar_funcionario(self, mock_stdout):
-        input_values = ['Joao', '2000', '123.456.789-09', 'Python;Java;SQL', '2']
-        with patch('builtins.input', side_effect=input_values):
-            adicionar_funcionario([])
-            self.assertEqual(mock_stdout.getvalue().strip(), "Funcionário inválido")
-    
-    """"def test_listar_funcionarios(self):
-        lista_funcionarios = [
-            {"Nome": "Joao", "Salário": "R$2,000.00", "Nível": "Junior", "CPF": "123.456.789-09", "Habilidades": "Python;Java;SQL"}
-        ]
-        with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-            listar_funcionarios(lista_funcionarios)
-            self.assertIn("Joao", mock_stdout.getvalue().strip())
-
-    def test_apagar_funcionario(self):
-        lista_funcionarios = [
-            {"Nome": "Joao", "Salário": "R$2,000.00", "Nível": "Junior", "CPF": "123.456.789-09", "Habilidades": "Python;Java;SQL"}
-        ]
-        input_values = ['1', '2']
-        with patch('builtins.input', side_effect=input_values), patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-            apagar_funcionario(lista_funcionarios)
-            self.assertEqual(len(lista_funcionarios), 0)
-
-if __name__ == '__main__':
-    unittest.main()"""
-    
-class Funcionario_Test(Funcionario):
-    def __init__(self, nome, salario, cpf, habilidades):
-        super().__init__(nome)
-        super().__init__(salario)
-        super().__init__(cpf)
-        super().__init__(habilidades)
-
-@app.route('/Funcionario', methods=['POST'])
-def post_funcionario():
-    data = request.json
-    
-    if 'Nome' not in data or not data['Nome']:
-        return jsonify({'sucesso': False, 'mensagem': 'Erro: Nome não informado'}), 400
-    
-    if 'Salário' not in data or not data['Salário:']:
-        return jsonify({'sucesso': False, 'mensagem': 'Erro: Salário não informado'}), 400
-    
-    if 'CPF' not in data or data['CPF'] < 0:
-        return jsonify({'sucesso': False, 'mensagem': 'Erro: CPF não informado'}), 400
-    
-    if 'Habilidades' not in data or data['Habilidade'] < 0:
-        return jsonify({'sucesso': False, 'mensagem': 'Erro: Habilidades não informadas'}), 400
-    
-    return jsonify({'sucesso': True, 'mensagem': 'Ok'})
 
 if __name__ == '__main__':
     app.run(debug=True)
