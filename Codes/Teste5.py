@@ -1,4 +1,3 @@
-import nltk
 from itertools import permutations
 import unittest
 from flask import Flask
